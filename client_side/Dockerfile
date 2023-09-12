@@ -9,7 +9,7 @@ COPY package*.json ./
 
 # Install dependencies
 RUN npm install react-scripts --save
-RUN npm install --force
+RUN npm install 
 RUN npm update
 
 # Copy the rest of the app's files to the working directory
