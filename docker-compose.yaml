@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  server:
+    build:
+      context: ./server_side  # Path to the server-side app's directory
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"   # Map container port to host port
+    volumes:
+      - ./server_side:/app   # Mount the server-side app code into the container
+    mem_limit: 1g
+    networks:
+      - hrportal   # Assign the service to the existing "hrportal" network
+
+  client:
+    build:
+      context: ./client_side   # Path to the client-side app's directory
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"   # Map container port to host port
+    depends_on:
+      - server   # Ensure the server container starts first
+    volumes:
+      - ./client_side:/app   # Mount the client-side app code into the container
+    mem_limit: 1g
+    networks:
+      - hrportal   # Assign the service to the existing "hrportal" network
+
+networks:
+  hrportal:
+    driver: bridge
