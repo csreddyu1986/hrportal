@@ -5,12 +5,12 @@ FROM node:14
 WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+COPY . .
 
 # Install dependencies
+RUN rm -rf node_modules package-lock.json
 RUN npm install react-scripts --save
 RUN npm install 
-RUN npm update
 
 # Copy the rest of the app's files to the working directory
 COPY . .
