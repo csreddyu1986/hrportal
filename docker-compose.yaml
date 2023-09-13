@@ -8,7 +8,7 @@ services:
       - "8000:8000"   # Map container port to host port
     volumes:
       - ./server_side:/app   # Mount the server-side app code into the container
-    mem_limit: 1g
+    mem_limit: 2g
     networks:
       - hrportal   # Assign the service to the existing "hrportal" network
 
@@ -22,7 +22,7 @@ services:
       - server   # Ensure the server container starts first
     volumes:
       - ./client_side:/app   # Mount the client-side app code into the container
-    mem_limit: 1g
+    mem_limit: 2g
     networks:
       - hrportal   # Assign the service to the existing "hrportal" network
 
